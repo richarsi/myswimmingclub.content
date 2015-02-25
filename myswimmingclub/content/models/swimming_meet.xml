@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+       xmlns:form="http://namespaces.plone.org/supermodel/form">
+    
+    <schema>
+
+        <!-- field definitions -->
+        <fieldset name="dates"
+            label="Swimming Meet Dates"
+            description="Key dates for the swimming meet">
+            <field name="start_date" type="zope.schema.Date">
+                <description/>
+                <title>Start Date</title>
+            </field>
+            <field name="end_date" type="zope.schema.Date">
+                <description/>
+                <title>End Date</title>
+            </field>
+            <field name="age_as_of_date" type="zope.schema.Date">
+                <description/>
+                <title>Age as of Date</title>
+            </field>
+            <field name="organisers_entry_date" type="zope.schema.Date">
+                <description/>
+                <title>Organisers Entry Date</title>
+            </field>
+        </fieldset>
+        <field name="location" type="plone.app.relationfield.RelationList">
+            <title>Location</title>
+            <description/>
+            <value_type type="plone.app.relationfield.Relation"
+                        form:widget="plone.formwidget.autocomplete.AutocompleteMultiFieldWidget">
+                <title>Related</title>
+                <source>myswimmingclub.content.pool_location_path_src_binder</source>
+            </value_type>
+            <required>False</required>
+        </field>
+        
+    </schema>
+    
+</model>

@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="myswimmingclub.content">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+        tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading" tal:content="context/title" />
+
+        <div class="discreet">
+            <tal:block condition="context/address_line_1">
+                <span i18n:translate="label_from">Address Line 1:</span>
+                <span tal:content="context/address_line_1" />
+            </tal:block>
+            <tal:block condition="context/address_line_1">
+                <span i18n:translate="label_from">Address Line 2:</span>
+                <span tal:content="context/address_line_2" />
+            </tal:block>
+            <tal:block condition="context/address_line_3">
+                <span i18n:translate="label_from">Address Line 3:</span>
+                <span tal:content="context/address_line_3" />
+            </tal:block>
+            <tal:block condition="context/town_or_city">
+                <span i18n:translate="label_from">Town or City:</span>
+                <span tal:content="context/town_or_city" />
+            </tal:block>
+            <tal:block condition="context/county_or_state">
+                <span i18n:translate="label_from">County or State:</span>
+                <span tal:content="context/county_or_state" />
+            </tal:block>
+            <tal:block condition="context/post_or_zip_code">
+                <span i18n:translate="label_from">Post or ZIP Code:</span>
+                <span tal:content="context/post_or_zip_code" />
+            </tal:block>
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription" tal:condition="context/description" tal:content="context/description" />
+
+        <tal:block condition="context/google_api_query">
+                <span i18n:translate="label_from">Google API:</span>
+                <span tal:content="context/google_api_query)" />
+        </tal:block>
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <div tal:content="structure context/details/output" />
+
+        <h2 i18n:translate="heading_sessions">Sessions</h2>
+        <dl>
+            <tal:block repeat="session view/sessions">
+                <dt>
+                    <a tal:attributes="href session/getURL"
+                       tal:content="session/Title" />
+                </dt>
+                <dd tal:content="session/Description" />
+            </tal:block>
+        </dl>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+
